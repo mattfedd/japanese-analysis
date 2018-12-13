@@ -1,0 +1,115 @@
+japanese text analysis
+- get a list of kanji with frequency
+- get a list of vocabulary with frequency
+
+visualization
+- map of joyou kanji, with highlights
+	- known kanji
+	- kanji in analyzed text (frequency colors)
+	- kanji in text minus known kanji
+
+way to log known kanji
+
+
+difficulty X = {mean length of sentence * -0.056} + {proportion of kango words * -0.126} + {proportion of wago
+words * -0.042} + {proportion of number of verbs among all words * -0.145} + {proportion of number of
+auxiliary verbs * -0.044 } + 11.724 (higher results are more readable, 0.5 - 6.0 range)
+
+
+
+- take existing texts
+- generate database
+	- TITLE_output.txt
+	- kanji totals, frequency lists, vocabulary, etc
+
+
+
+
+text functions
+- (unicode) hiragana to katakana
+- (unicode) katakana to hiragana
+- (unicode) is this kanji?
+- remove stopwords from text
+- 
+- remove character from position in string
+- take single output file and aggregate it into master list
+
+
+
+
+
+- take database
+- take kanji infor
+
+main function -- what should I read?
+-- given some knowledge about your language ability, the program picks from a known list and gives a recommendation
+	- books
+	- websites (constant updates or scraping needed)
+	- manga (OCR needed?)
+	- film, tv (subtitle info needed)
+
+-- user can choose from the known list or imput copied text, and the program gives a recommendation (yay/nay)
+
+-- other way around -- pick something out of a known list, and see analysis on that work compared to your knowledge
+
+-- knowledge is assessed in a few different ways
+	- kanji
+		- pick from a list and yay/nay
+		- graded grouped sets (JLPT, Japanese grades, genki, tobira, etc) yay/nay
+		- individual reading works, choose comprehension yay/nay?
+	- vocabulary (tougher one since not limited)
+		- graded grouped sets (JLPT, genki, tobira, core2k/5k/6k/10k, etc) yay/nay
+		- previously read texts -- give some cutoff on frequency and add above that to knowledge corpus
+
+-- alternative function --- given a piece of text, figure out a pathway (of sources such as textbooks, other texts, vocab, etc) to get to 80% (or arbitrary %) comprehension for the target text, assuming some retention % of kanji+vocab with weights 
+
+---------------------------------------------------------
+
+- visualization fun
+
+- kanji class with data for kanji
+- chart object
+	- made up of map of boxes
+		- x, y, size
+		- color base
+		- color strength
+		- kanji object reference
+		- 
+
+
+
+- input a single text -> generate kanji chart of all kanji in that work, sorted by frequency
+	- kanji colored by jlpt, grade, global frequency
+- input a single text -> generate a bar/line graph of top X kanji in that work, sorted by frequency/occurrence
+	- x axis kanji values colored by jlpt, grade, global frequency
+- input a single text -> generate kanji chart of all 2500 kanji
+	- text-included kanji are highlighted by frequency
+	- additional kanji are off to the side
+	- 
+
+
+
+
+* For any given text, how many words would you need to know to achieve X% comprehension? (80 - 98 %)
+* For any given text, out of the less common words (outside the most common 5000 words?), how many have kanji but no furigana?
+* How many unique words are there in the text that are both uncommon *and* used only once or twice in the whole text? (My assumption is that it's easier to deal with a rare word that the author uses over and over, rather than fifty different rare words that the author only uses once each.) 
+
+Seems that 'vocab density' might give a reasonable measure of relative difficulty, i.e. something like "number of different words / total number of words"
+
+picked a few words which this book's sample uses often at well-spaced intervals.
+
+pick the 10 most "mendokusai" 
+
+the percent of common kanji you'd need to learn before 
+
+model of the frustration you'll feel through various parts (difficulty as you go along)
+
+
+
+
+
+
+
+
+
+

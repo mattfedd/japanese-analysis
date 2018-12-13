@@ -1,0 +1,44 @@
+- horribly unnecessary headache on windows
+
+1. Mecab website http://taku910.github.io/mecab/. Get the windows installer here https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7WElGUGt6ejlpVXc
+	- install with Shift-jis encoding
+	- go into windows settings, region and language settings, administrative language settings, set non-unicode programs to Japanese/Japan (don't enable any UTF-8 beta features, it just sets chcp 65001 [as of 10/28/2018] which isn't what we want). This will let the command prompt display japanese characters instead of boxes and gibberish
+	- test by running "mecab -D" in cmd, should say shift-jis
+	- can also test by running mecab and giving it a test sentence in japanese. It should be able to parse the individual words.
+
+2. Get some sort of python install. I use Anaconda to manage different environments and package installs. The config for this was 
+	- Python 2.7.15
+	- pip 10.0.1
+	- wheel 0.32.2
+
+3. Download the mecab python package. 
+	- pip install mecab-python-windows 
+
+4. Test in python. Note the script encoding in line 1, the sys.setdefaultencoding in line 7, the unicode u'' when assigning the test message, and the msg.encode('shift-jis') to allow mecab to parse
+
+# -*- coding: utf-8 -*-
+
+import MeCab
+import codecs
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+print sys.getdefaultencoding()
+
+m = MeCab.Tagger('')
+msg = u'ç°ì˙Ç‡ÇµÇ»Ç¢Ç∆ÇÀ'
+msg_encode = msg.encode('shift-jis')
+print(msg)
+result = m.parse(msg_encode).split('\n')
+for r in result:print(r)
+
+filename = "output.txt"
+fp = open(filename, "w")
+fp.write(msg_encode)
+fp.write('\r\n')
+for r in result:
+    fp.write(r)
+    fp.write('\r\n')
+fp.close()
+
+print("success")
